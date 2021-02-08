@@ -34,7 +34,6 @@ import com.android.tv.classics.R
 import androidx.lifecycle.lifecycleScope
 import com.android.tv.classics.models.TvMediaDatabase
 import com.android.tv.classics.models.TvMediaMetadata
-import com.android.tv.classics.workers.TvMediaSynchronizer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.animation.ValueAnimator
@@ -154,8 +153,6 @@ class MediaBrowserFragment : BrowseSupportFragment() {
             // Now that the fragment has been created, we can populate our adapter
             populateAdapter(adapter as ArrayObjectAdapter)
 
-            // Start a one-off synchronization job when fragment is shown, bypassing work manager
-            TvMediaSynchronizer.synchronize(requireContext())
         }
 
         // Pick a random background for our fragment

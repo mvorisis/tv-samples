@@ -22,18 +22,11 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.Navigation
-import androidx.work.Constraints
-import androidx.work.NetworkType
-import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkManager
 import com.android.tv.classics.models.TvMediaDatabase
-import com.android.tv.classics.workers.TvMediaSynchronizer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import java.util.concurrent.TimeUnit
-
 
 /** Entry point for the Android TV application */
 class MainActivity : FragmentActivity() {
@@ -83,16 +76,6 @@ class MainActivity : FragmentActivity() {
                 else -> Log.w(TAG, "VIEW intent received but unrecognized URI: $uri")
             }
         }
-
-        // Syncs the home screen channels hourly
-        // NOTE: It's very important to keep our content fresh in the user's home screen
-        WorkManager.getInstance(baseContext).enqueue(
-                PeriodicWorkRequestBuilder<TvMediaSynchronizer>(1, TimeUnit.HOURS)
-                        .setInitialDelay(1, TimeUnit.HOURS)
-                        .setConstraints(Constraints.Builder()
-                                .setRequiredNetworkType(NetworkType.CONNECTED)
-                                .build())
-                        .build())
     }
 
 }

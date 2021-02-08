@@ -27,7 +27,6 @@ import androidx.work.WorkManager
 import com.android.tv.classics.utils.TvLauncherUtils
 import com.android.tv.classics.models.TvMediaDatabase
 import com.android.tv.classics.models.TvMediaMetadata
-import com.android.tv.classics.workers.TvMediaSynchronizer
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -52,9 +51,7 @@ class TvLauncherReceiver : BroadcastReceiver() {
             // Initializes channel
             TvContractCompat.ACTION_INITIALIZE_PROGRAMS -> {
                 Log.d(TAG, "Handling INITIALIZE_PROGRAMS broadcast")
-                // Synchronizes all program and channel data
-                WorkManager.getInstance(context).enqueue(
-                        OneTimeWorkRequestBuilder<TvMediaSynchronizer>().build())
+
             }
 
             // One of our programs has been added to watch next system channel

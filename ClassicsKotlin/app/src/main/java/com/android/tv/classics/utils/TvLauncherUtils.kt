@@ -20,11 +20,9 @@ import android.annotation.SuppressLint
 import android.content.ContentResolver
 import android.content.Context
 import android.content.res.Resources
-import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.util.Log
 import android.util.Rational
-import android.util.Size
 import androidx.annotation.RequiresApi
 import androidx.tvprovider.media.tv.PreviewChannel
 import androidx.tvprovider.media.tv.PreviewChannelHelper
